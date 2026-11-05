@@ -1351,6 +1351,39 @@
     .exp   { background: linear-gradient(180deg, var(--cream) 0, var(--espresso) 260px); }
     .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22vh; z-index: 7; pointer-events: none; background: linear-gradient(180deg, rgba(241,230,214,0), var(--beige)); }
     .bgfx { -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent); }
+    /* ================= MINI TOOLS ================= */
+    .lab { position: relative; z-index: 6; padding: 12vh 4vw 14vh; background: linear-gradient(180deg, var(--cream) 0, var(--beige) 45%, var(--cream) 100%); }
+    .lab .bgfx .b3 { background: var(--fx-blob-a); }
+    .lab-intro { max-width: 620px; margin: -14px auto 56px; text-align: center; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
+    .lab-list { display: grid; gap: 34px; width: min(1180px, 100%); margin: 0 auto; }
+    .lab-card { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(24px, 4vw, 56px); padding: clamp(18px, 2.4vw, 30px); border-radius: 30px; background: rgba(255,250,243,.78); border: 1px solid #eadcc7; box-shadow: 0 18px 50px rgba(90,60,30,.08); }
+    .lab-card.rev { grid-template-columns: 1fr 1.25fr; }
+    .lab-card.rev .lab-shot { order: 2; }
+    .lab-shot { margin: 0; overflow: hidden; border-radius: 18px; background: #fff; border: 1px solid #e6d6bf; box-shadow: 0 14px 34px rgba(70,45,20,.14); transform: rotate(-.6deg); transition: transform .5s cubic-bezier(.2,.9,.2,1), box-shadow .5s; }
+    .lab-card.rev .lab-shot { transform: rotate(.6deg); }
+    .lab-card:hover .lab-shot { transform: rotate(0) translateY(-6px) scale(1.015); box-shadow: 0 24px 50px rgba(70,45,20,.2); }
+    .lab-bar { display: flex; align-items: center; gap: 6px; padding: 9px 14px; background: #f6ecdd; border-bottom: 1px solid #eadcc7; }
+    .lab-bar i { width: 10px; height: 10px; border-radius: 50%; background: #e2a68f; }
+    .lab-bar i:nth-child(2) { background: #e9c77f; }
+    .lab-bar i:nth-child(3) { background: #a9c99a; }
+    .lab-bar span { margin-left: 8px; font-size: 11.5px; font-weight: 500; letter-spacing: .02em; color: #8a7360; }
+    .lab-shot img { width: 100%; aspect-ratio: 1280 / 820; object-fit: cover; object-position: top center; }
+    .lab-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .lab-head img { flex: none; width: 56px; height: 56px; border-radius: 16px; object-fit: cover; background: #fff; border: 1px solid #eadcc7; box-shadow: 0 4px 12px rgba(70,45,20,.1); }
+    .lab-kind { display: block; margin-bottom: 2px; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .lab-body h3 { font-family: var(--display); font-size: clamp(26px, 2.6vw, 34px); font-weight: 500; letter-spacing: -.03em; line-height: 1.1; color: var(--ink); }
+    .lab-body > p { font-size: 15px; line-height: 1.65; color: #6b5a4b; }
+    .lab-feat { display: grid; gap: 9px; margin: 18px 0 20px; }
+    .lab-feat li { position: relative; padding-left: 26px; font-size: 14px; line-height: 1.45; color: #4a3a2d; }
+    .lab-feat li::before { content: ""; position: absolute; left: 2px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--pill); box-shadow: inset 0 0 0 4px #f0e3d0, inset 0 0 0 14px var(--accent); }
+    .lab-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .lab-tags span { padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 500; color: #5a3d26; background: var(--pill); border: 1px solid #e8d6bd; }
+    @media (max-width: 900px) {
+      .lab-card, .lab-card.rev { grid-template-columns: minmax(0, 1fr); }
+      .lab-card.rev .lab-shot { order: 0; }
+      .lab-shot, .lab-card.rev .lab-shot { transform: none; }
+    }
+    @media (max-width: 760px) { .lab { padding: 10vh 16px 11vh; } .lab-intro { margin: -8px auto 36px; font-size: 14.5px; } .lab-card { border-radius: 24px; } }
     /* Skills / Tools / Education upgrade */
     .kit-card h4 { font-family: var(--display, 'Fraunces'), serif; font-size: 15px; font-weight: 500; letter-spacing: .02em; color: #7a5334; margin-bottom: 10px; }
     .kit-card h4::before { content: ""; display: inline-block; width: 18px; height: 2px; background: var(--accent-2); vertical-align: middle; margin-right: 8px; }
@@ -1874,7 +1907,7 @@
           <a href="#about">About me</a>
           <a href="#kit">Education &amp; Skills</a>
           <a href="#work">Projects</a>
-          <a href="#exp">Experience</a>
+          <a href="#lab">Mini Tools</a>
         </div>
         <a href="#cta" class="btn">Contact</a>
       </nav>
@@ -2401,39 +2434,53 @@
     </section>
 
 
-    <!-- KINH NGHIỆM -->
-    <section class="exp" id="exp">
-      <div class="sq-field" data-count="14"></div>
+    <!-- MINI TOOLS (tool nhỏ tự làm) -->
+    <section class="lab" id="lab">
       <div class="sec-head">
-        <span class="pill reveal">Experience</span>
-        <h2 class="h2 split">Chặng đường<br><em>đã đi qua.</em></h2>
+        <span class="pill reveal">Mini Tools</span>
+        <h2 class="h2 split">Công cụ nhỏ<br><em>mình tự làm.</em></h2>
       </div>
-      <ul class="exp-list">
-        <li class="exp-row reveal">
-          <span class="exp-year">03/2026 — 11/2026</span>
-          <div>
-            <h3>Content Creator | AI Team Leader</h3>
-            <p>Viết hơn 1.000 kịch bản, dựng phim AI và sản xuất 200+ video review thời trang. Quản lý fanpage (10.000+ người theo dõi, video 1,5 triệu lượt xem), đào tạo nhân sự dùng prompt và quản lý nhóm.</p>
+      <p class="lab-intro reveal">Ngoài làm nội dung, mình còn tự làm vài công cụ nhỏ để công việc hằng ngày nhanh và vui hơn. Gặp việc gì lặp đi lặp lại là mình muốn có một cái tool cho nó.</p>
+      <div class="lab-list">
+        <article class="lab-card reveal">
+          <figure class="lab-shot">
+            <div class="lab-bar"><i></i><i></i><i></i><span>SoundFinder</span></div>
+            <img src="hinh/tool/soundfinder.jpg" alt="Giao diện SoundFinder: tìm nhạc và xem nhạc thịnh hành trên TikTok" loading="lazy">
+          </figure>
+          <div class="lab-body">
+            <div class="lab-head">
+              <img src="hinh/tool/soundfinder-logo.png" alt="">
+              <div><span class="lab-kind">TikTok Edit Companion</span><h3>SoundFinder</h3></div>
+            </div>
+            <p>Tool tìm nhạc nền cho video TikTok. Tìm theo tên bài hát, nghệ sĩ hoặc vibe, xem bảng nhạc đang thịnh hành theo từng quốc gia, rồi lưu sound ưng ý vào thư mục để lần sau dựng video lấy ra dùng ngay.</p>
+            <ul class="lab-feat">
+              <li>Tìm sound theo mood và kiểu nội dung</li>
+              <li>Nhạc trending Việt Nam, Hàn Quốc, Châu Á, US-UK</li>
+              <li>Lưu sound và thư mục, xem lại được cả khi offline</li>
+            </ul>
+            <div class="lab-tags"><span>Windows app</span><span>Portable, không cần cài</span><span>HTML · JavaScript</span></div>
           </div>
-          <span class="exp-place">HNT MEDIA</span>
-        </li>
-        <li class="exp-row reveal">
-          <span class="exp-year">07/2025 — 02/2026</span>
-          <div>
-            <h3>Content Creator (Scriptwriter & Video Editor)</h3>
-            <p>Viết 600+ kịch bản YouTube trong 6 tháng, tạo voice, dựng video và thiết kế thumbnail tăng CTR. Phát triển kênh YouTube 10.000+ và Facebook 30.000+ người theo dõi, tổng hơn 3 triệu lượt xem.</p>
+        </article>
+        <article class="lab-card rev reveal">
+          <figure class="lab-shot">
+            <div class="lab-bar"><i></i><i></i><i></i><span>Pompom Notes</span></div>
+            <img src="hinh/tool/pompom-notes.jpg" alt="Giao diện Pompom Notes: ghi chú và danh sách việc cần làm" loading="lazy">
+          </figure>
+          <div class="lab-body">
+            <div class="lab-head">
+              <img src="hinh/tool/pompom-logo.jpg" alt="">
+              <div><span class="lab-kind">Desktop Notes App</span><h3>Pompom Notes</h3></div>
+            </div>
+            <p>App ghi chú nhỏ xinh cho Windows. Ghi ý tưởng, lập danh sách việc cần làm và tích từng mục khi xong, ghim ghi chú quan trọng, hoặc tách một ghi chú ra cửa sổ nhỏ luôn nổi trên màn hình trong lúc làm việc.</p>
+            <ul class="lab-feat">
+              <li>Ghi chú kèm checklist việc cần làm</li>
+              <li>Ghim, lọc theo danh mục, tìm kiếm nhanh</li>
+              <li>Cửa sổ mini luôn nổi, dữ liệu lưu ngay trên máy</li>
+            </ul>
+            <div class="lab-tags"><span>Windows app</span><span>Electron</span><span>Portable, không cần cài</span></div>
           </div>
-          <span class="exp-place">BB MEDIA</span>
-        </li>
-        <li class="exp-row reveal">
-          <span class="exp-year">07/2024 — 01/2025</span>
-          <div>
-            <h3>Trợ giảng kiêm phụ trách nội dung & sự kiện</h3>
-            <p>Hỗ trợ giảng dạy, lên ý tưởng và điều phối các buổi giao lưu văn hóa Nhật Bản; thiết kế poster, banner, standee cho sự kiện và tuyển sinh.</p>
-          </div>
-          <span class="exp-place">KIZUNA</span>
-        </li>
-      </ul>
+        </article>
+      </div>
     </section>
 
     <!-- LIÊN HỆ -->
@@ -2466,7 +2513,7 @@
       </svg>
       <nav class="f-links">
         <a href="#work">Projects</a> &middot;
-        <a href="#exp">Experience</a> &middot;
+        <a href="#lab">Mini Tools</a> &middot;
         <a href="#cta">Contact</a>
       </nav>
       <div class="f-social">
@@ -2540,7 +2587,7 @@
         return h;
       }
       const BG_PETALS = 7; // số cánh hoa mỗi slide (0 = không có)
-      document.querySelectorAll('.about, .kit, .stats, .work, .exp').forEach(sec => {
+      document.querySelectorAll('.about, .kit, .stats, .work, .lab').forEach(sec => {
         const fx = document.createElement('div');
         fx.className = 'bgfx';
         fx.setAttribute('aria-hidden', 'true');
