@@ -1356,8 +1356,11 @@
     .lab .bgfx .b3 { background: var(--fx-blob-a); }
     .lab-intro { max-width: 620px; margin: -14px auto 56px; text-align: center; font-size: 15.5px; line-height: 1.65; color: var(--muted); }
     .lab-list { display: grid; gap: 34px; width: min(1180px, 100%); margin: 0 auto; }
-    .lab-card { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(24px, 4vw, 56px); padding: clamp(18px, 2.4vw, 30px); border-radius: 30px; background: rgba(255,250,243,.78); border: 1px solid #eadcc7; box-shadow: 0 18px 50px rgba(90,60,30,.08); }
-    .lab-card.rev { grid-template-columns: 1fr 1.25fr; }
+    .lab-card { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); align-items: center; gap: clamp(22px, 3vw, 44px); padding: clamp(16px, 2vw, 26px); border-radius: 30px; background: rgba(255,250,243,.78); border: 1px solid #eadcc7; box-shadow: 0 18px 50px rgba(90,60,30,.08); }
+    .lab-card.rev { grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr); }
+    .lab-body { padding-right: 8px; }
+    .lab-card.rev .lab-body { padding: 0 0 0 8px; }
+    .lab-body > p { margin-bottom: 20px; }
     .lab-card.rev .lab-shot { order: 2; }
     .lab-shot { margin: 0; overflow: hidden; border-radius: 18px; background: #fff; border: 1px solid #e6d6bf; box-shadow: 0 14px 34px rgba(70,45,20,.14); transform: rotate(-.6deg); transition: transform .5s cubic-bezier(.2,.9,.2,1), box-shadow .5s; }
     .lab-card.rev .lab-shot { transform: rotate(.6deg); }
@@ -1367,12 +1370,12 @@
     .lab-bar i:nth-child(2) { background: #e9c77f; }
     .lab-bar i:nth-child(3) { background: #a9c99a; }
     .lab-bar span { margin-left: 8px; font-size: 11.5px; font-weight: 500; letter-spacing: .02em; color: #8a7360; }
-    .lab-shot img { width: 100%; aspect-ratio: 1280 / 820; object-fit: cover; object-position: top center; }
+    .lab-shot img { width: 100%; aspect-ratio: 1880 / 1240; object-fit: cover; object-position: top center; }
     .lab-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
     .lab-head img { flex: none; width: 56px; height: 56px; border-radius: 16px; object-fit: cover; background: #fff; border: 1px solid #eadcc7; box-shadow: 0 4px 12px rgba(70,45,20,.1); }
     .lab-kind { display: block; margin-bottom: 2px; font-size: 11.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
     .lab-body h3 { font-family: var(--display); font-size: clamp(26px, 2.6vw, 34px); font-weight: 500; letter-spacing: -.03em; line-height: 1.1; color: var(--ink); }
-    .lab-body > p { font-size: 15px; line-height: 1.65; color: #6b5a4b; }
+    .lab-body > p { font-size: 15.5px; line-height: 1.65; color: #6b5a4b; }
     .lab-feat { display: grid; gap: 9px; margin: 18px 0 20px; }
     .lab-feat li { position: relative; padding-left: 26px; font-size: 14px; line-height: 1.45; color: #4a3a2d; }
     .lab-feat li::before { content: ""; position: absolute; left: 2px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--pill); box-shadow: inset 0 0 0 4px #f0e3d0, inset 0 0 0 14px var(--accent); }
@@ -1381,6 +1384,7 @@
     @media (max-width: 900px) {
       .lab-card, .lab-card.rev { grid-template-columns: minmax(0, 1fr); }
       .lab-card.rev .lab-shot { order: 0; }
+      .lab-body, .lab-card.rev .lab-body { padding: 0 4px 4px; }
       .lab-shot, .lab-card.rev .lab-shot { transform: none; }
     }
     @media (max-width: 760px) { .lab { padding: 10vh 16px 11vh; } .lab-intro { margin: -8px auto 36px; font-size: 14.5px; } .lab-card { border-radius: 24px; } }
@@ -2440,7 +2444,7 @@
         <span class="pill reveal">Mini Tools</span>
         <h2 class="h2 split">Công cụ nhỏ<br><em>mình tự làm.</em></h2>
       </div>
-      <p class="lab-intro reveal">Ngoài làm nội dung, mình còn tự làm vài công cụ nhỏ để công việc hằng ngày nhanh và vui hơn. Gặp việc gì lặp đi lặp lại là mình muốn có một cái tool cho nó.</p>
+      <p class="lab-intro reveal">Vài công cụ nhỏ mình tự làm để công việc hằng ngày nhanh và vui hơn.</p>
       <div class="lab-list">
         <article class="lab-card reveal">
           <figure class="lab-shot">
@@ -2452,13 +2456,8 @@
               <img src="hinh/tool/soundfinder-logo.png" alt="">
               <div><span class="lab-kind">TikTok Edit Companion</span><h3>SoundFinder</h3></div>
             </div>
-            <p>Tool tìm nhạc nền cho video TikTok. Tìm theo tên bài hát, nghệ sĩ hoặc vibe, xem bảng nhạc đang thịnh hành theo từng quốc gia, rồi lưu sound ưng ý vào thư mục để lần sau dựng video lấy ra dùng ngay.</p>
-            <ul class="lab-feat">
-              <li>Tìm sound theo mood và kiểu nội dung</li>
-              <li>Nhạc trending Việt Nam, Hàn Quốc, Châu Á, US-UK</li>
-              <li>Lưu sound và thư mục, xem lại được cả khi offline</li>
-            </ul>
-            <div class="lab-tags"><span>Windows app</span><span>Portable, không cần cài</span><span>HTML · JavaScript</span></div>
+            <p>Tìm nhạc nền TikTok theo mood, xem nhạc đang thịnh hành và lưu sound ưng ý để dựng video nhanh hơn.</p>
+            <div class="lab-tags"><span>Windows app</span><span>HTML · JS</span></div>
           </div>
         </article>
         <article class="lab-card rev reveal">
@@ -2471,13 +2470,8 @@
               <img src="hinh/tool/pompom-logo.jpg" alt="">
               <div><span class="lab-kind">Desktop Notes App</span><h3>Pompom Notes</h3></div>
             </div>
-            <p>App ghi chú nhỏ xinh cho Windows. Ghi ý tưởng, lập danh sách việc cần làm và tích từng mục khi xong, ghim ghi chú quan trọng, hoặc tách một ghi chú ra cửa sổ nhỏ luôn nổi trên màn hình trong lúc làm việc.</p>
-            <ul class="lab-feat">
-              <li>Ghi chú kèm checklist việc cần làm</li>
-              <li>Ghim, lọc theo danh mục, tìm kiếm nhanh</li>
-              <li>Cửa sổ mini luôn nổi, dữ liệu lưu ngay trên máy</li>
-            </ul>
-            <div class="lab-tags"><span>Windows app</span><span>Electron</span><span>Portable, không cần cài</span></div>
+            <p>App ghi chú và checklist việc cần làm, có thể tách ghi chú ra cửa sổ nhỏ luôn nổi trên màn hình.</p>
+            <div class="lab-tags"><span>Windows app</span><span>Electron</span></div>
           </div>
         </article>
       </div>
