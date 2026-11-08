@@ -1021,6 +1021,10 @@
       justify-self: end;
     }
     .f-social svg { width: 18px; height: 18px; fill: currentColor; }
+    .f-cv { justify-self: end; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; border-radius: 99px; background: #3b2a1e; color: #fbf0de; font: 600 13px 'Be Vietnam Pro', sans-serif; letter-spacing: .02em; box-shadow: 0 8px 18px rgba(60,35,15,.22); transition: transform .3s, background .3s; }
+    .f-cv svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .f-cv:hover { transform: translateY(-2px); background: var(--accent); }
+    @media (max-width: 760px) { .f-cv { justify-self: center; } }
     .f-copy {
       grid-column: 1 / -1;
       text-align: center;
@@ -2603,11 +2607,7 @@
         <a href="#lab">Mini Tools</a> &middot;
         <a href="#cta">Contact</a>
       </nav>
-      <div class="f-social">
-        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.970h-1.513c-1.491 0-1.956.931-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg></a>
-        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-        <a href="mailto:nguyentu262012@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.3-.5L12 11.2 19.7 5H4.3zM20 6.6l-7.4 6a1 1 0 0 1-1.2 0L4 6.6v11.9c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5V6.6z"/></svg></a>
-      </div>
+      <a class="f-cv" href="CV-Nguyen-dang-Truong-Ngoc-Tu.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span>Xem CV</span></a>
       <div class="f-copy">&copy; 2026 Nguyễn Đặng Trương Ngọc Tú.</div>
     </footer>
   </div>
