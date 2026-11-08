@@ -1789,24 +1789,56 @@
     @media (prefers-reduced-motion: reduce) { .ytp figure { opacity: 1; animation: none !important; transform: rotate(var(--r)); } }
     /* Thumbnail gallery: bento mosaic */
     /* Other Projects: 3 video riêng, có tiếng, xem trực tiếp */
-    .xproj { position: relative; z-index: 2; margin: 90px auto 0; width: min(1180px, 100%); }
-    .xgrid { display: flex; gap: 18px; align-items: stretch; }
-    .xc { box-sizing: border-box; flex: .5625 1 0; min-width: 0; margin: 0; padding: 8px 8px 0; display: flex; flex-direction: column; background: #fffaf3; border-radius: 22px; box-shadow: 0 10px 28px rgba(60,35,15,.16); transition: transform .4s cubic-bezier(.2,.9,.2,1), box-shadow .4s; }
+    .xproj { position: relative; z-index: 2; margin: 90px -4vw 0; padding: 0 2vw; }
+    .xstage { position: relative; box-sizing: border-box; width: min(1640px, 100%); margin: 0 auto; padding: 64px clamp(20px, 3vw, 56px) 56px; border-radius: 40px; overflow: hidden; color: #f6e8d4;
+      background: radial-gradient(120% 90% at 15% 0%, #4a3020 0%, transparent 55%), radial-gradient(90% 80% at 100% 100%, #3a2418 0%, transparent 60%), linear-gradient(160deg, #24170f, #170e08);
+      box-shadow: 0 40px 90px rgba(40,22,10,.35), inset 0 0 0 1px rgba(255,230,200,.08); }
+    /* lỗ phim chạy dọc mép trên & dưới */
+    .xstage::before, .xstage::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; opacity: .5; pointer-events: none;
+      background: radial-gradient(closest-side, rgba(255,236,210,.28) 70%, transparent 74%) 0 0 / 26px 12px repeat-x; animation: xFilm 18s linear infinite; }
+    .xstage::before { top: 18px; } .xstage::after { bottom: 18px; animation-direction: reverse; }
+    @keyframes xFilm { to { background-position: 260px 0; } }
+    .xbar { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 26px; font: 500 12.5px 'Be Vietnam Pro', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: rgba(246,232,212,.65); }
+    .xbar b { display: inline-flex; align-items: center; gap: 10px; color: #f6e8d4; font-weight: 600; }
+    .xbar b::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #e2564a; box-shadow: 0 0 0 4px rgba(226,86,74,.25); animation: xRec 1.6s ease-in-out infinite; }
+    @keyframes xRec { 50% { opacity: .35; } }
+    .xgrid { position: relative; z-index: 2; display: flex; gap: clamp(14px, 1.6vw, 26px); align-items: stretch; }
+    .xc { position: relative; box-sizing: border-box; flex: .5625 1 0; min-width: 0; margin: 0; display: flex; flex-direction: column; }
     .xc.xc-wide { flex-grow: 1.7778; }
-    .xc:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(60,35,15,.24); }
-    .xc-media { position: relative; aspect-ratio: 9 / 16; border-radius: 15px; overflow: hidden; background: #1e140c; }
+    .xc-glow { position: absolute; inset: 4% -6% 18%; z-index: 0; background: var(--p) center / cover; filter: blur(46px) saturate(1.5); opacity: .4; transition: opacity .6s, transform .6s; pointer-events: none; }
+    .xc:hover .xc-glow, .xc.on .xc-glow { opacity: .7; transform: scale(1.05); }
+    .xc-media { position: relative; z-index: 1; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden; background: #0f0905; box-shadow: 0 24px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(255,236,210,.14); transform: translateZ(0); transition: transform .55s cubic-bezier(.2,.9,.2,1), box-shadow .55s; }
     .xc-wide .xc-media { aspect-ratio: auto; flex: 1 1 auto; }
-    .xc-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #1e140c; }
-    .xc figcaption { display: flex; flex-direction: column; gap: 2px; padding: 12px 8px 14px; }
-    .xc figcaption b { font: 600 18px 'Fraunces', serif; color: #3d3128; }
-    .xc figcaption span { font-size: 13px; color: #7a6350; }
+    .xc:hover .xc-media { transform: translateY(-8px); box-shadow: 0 36px 70px rgba(0,0,0,.6), 0 0 0 2px rgba(236,201,155,.55); }
+    .xc-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #0f0905; }
+    .xc-media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(15,9,5,.15), transparent 35%, transparent 60%, rgba(15,9,5,.7)); transition: opacity .4s; }
+    .xc.on .xc-media::after { opacity: 0; }
+    .xc-play { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0; border: 0; background: none; color: #fff8ec; cursor: pointer; font: 600 12px 'Be Vietnam Pro', sans-serif; letter-spacing: .16em; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,.6); transition: opacity .35s, transform .35s; }
+    .xc-play i { position: relative; display: grid; place-items: center; width: 74px; height: 74px; border-radius: 50%; background: rgba(255,248,236,.18); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1.5px rgba(255,248,236,.7); transition: transform .35s cubic-bezier(.3,1.6,.5,1), background .35s; }
+    .xc-play i::before { content: ""; position: absolute; inset: -1px; border-radius: 50%; border: 2px solid rgba(255,236,205,.7); animation: xPulse 2.2s ease-out infinite; }
+    .xc-play svg { width: 26px; height: 26px; margin-left: 4px; fill: #fff8ec; }
+    .xc:hover .xc-play i { transform: scale(1.12); background: #c98f5c; }
+    .xc.on .xc-play { opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(.8); }
+    @keyframes xPulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.7); opacity: 0; } }
+    .xc-tag { position: absolute; z-index: 3; top: 14px; left: 14px; padding: 6px 12px; border-radius: 99px; background: rgba(15,9,5,.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font: 600 11px 'Be Vietnam Pro', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #f3dcbc; box-shadow: inset 0 0 0 1px rgba(255,236,210,.2); transition: opacity .35s; }
+    .xc.on .xc-tag { opacity: 0; }
+    .xc figcaption { position: relative; z-index: 1; display: flex; align-items: flex-end; gap: 14px; padding: 20px 4px 0; }
+    .xc figcaption i { font: italic 400 clamp(34px, 3.2vw, 52px)/.8 'Fraunces', serif; color: transparent; -webkit-text-stroke: 1px rgba(236,201,155,.75); }
+    .xc figcaption b { display: block; font: 600 clamp(17px, 1.4vw, 22px)/1.15 'Fraunces', serif; color: #fff3e2; }
+    .xc figcaption span { display: block; margin-top: 4px; font-size: 13px; color: rgba(246,232,212,.62); }
     @media (max-width: 760px) {
-      .xgrid { flex-wrap: wrap; gap: 12px; }
+      .xproj { margin: 70px -4vw 0; padding: 0 10px; }
+      .xstage { padding: 44px 14px 40px; border-radius: 28px; }
+      .xbar { font-size: 10.5px; letter-spacing: .16em; margin-bottom: 18px; }
+      .xgrid { flex-wrap: wrap; gap: 22px 12px; }
       .xc { flex: 1 1 calc(50% - 6px); }
       .xc.xc-wide { flex-basis: 100%; }
       .xc-wide .xc-media { aspect-ratio: 16 / 9; flex: none; }
-      .xc figcaption b { font-size: 16px; }
+      .xc-play i { width: 58px; height: 58px; } .xc-play span { display: none; }
+      .xc figcaption { gap: 10px; padding-top: 14px; }
+      .xc figcaption span { font-size: 12px; }
     }
+    @media (prefers-reduced-motion: reduce) { .xstage::before, .xstage::after, .xbar b::before, .xc-play i::before { animation: none; } }
     .thumbs { position: relative; z-index: 2; margin: 80px -4vw 10px; padding: 0 14px; }
     .thumbs-head { text-align: center; margin-bottom: 36px; }
     .thumbs-head h3 { margin: 16px 0 8px; font: 600 clamp(26px, 4vw, 50px)/1.1 'Fraunces', serif; color: #2a2018; letter-spacing: -.015em; }
@@ -2447,19 +2479,31 @@
           <span class="pill reveal">Other Projects</span>
           <h2 class="h2 split">Những dự án khác<br>mình <em>đã làm.</em></h2>
         </div>
+        <div class="xstage">
+        <div class="xbar"><b>Showreel</b><span>Bấm ▶ để xem có tiếng</span></div>
         <div class="xgrid">
-          <figure class="xc xc-wide">
-            <div class="xc-media"><video controls playsinline preload="metadata" poster="hinh/poster/khac-01w.jpg" src="video/du-an-khac/CARGO-BOX.mp4"></video></div>
-            <figcaption><b>Cargo Box</b><span>Quảng cáo AI · 0:15</span></figcaption>
+          <figure class="xc xc-wide" style="--p: url('hinh/poster/khac-01w.jpg')">
+            <div class="xc-glow"></div>
+            <div class="xc-media"><video playsinline preload="metadata" poster="hinh/poster/khac-01w.jpg" src="video/du-an-khac/CARGO-BOX.mp4"></video>
+              <span class="xc-tag">Commercial</span>
+              <button class="xc-play" aria-label="Phát Cargo Box có tiếng"><i><svg viewBox="0 0 24 24"><path d="M7 4.500v15l12-7.500z"/></svg></i><span>Xem có tiếng</span></button></div>
+            <figcaption><i>01</i><div><b>Cargo Box</b><span>Quảng cáo AI · 0:15</span></div></figcaption>
           </figure>
-          <figure class="xc">
-            <div class="xc-media"><video controls playsinline preload="metadata" poster="hinh/poster/khac-02.jpg" src="video/du-an-khac/Short_30s_1.mp4"></video></div>
-            <figcaption><b>Short Film</b><span>Phim ngắn AI · 0:30</span></figcaption>
+          <figure class="xc" style="--p: url('hinh/poster/khac-02.jpg')">
+            <div class="xc-glow"></div>
+            <div class="xc-media"><video playsinline preload="metadata" poster="hinh/poster/khac-02.jpg" src="video/du-an-khac/Short_30s_1.mp4"></video>
+              <span class="xc-tag">Short film</span>
+              <button class="xc-play" aria-label="Phát Short Film có tiếng"><i><svg viewBox="0 0 24 24"><path d="M7 4.500v15l12-7.500z"/></svg></i><span>Xem có tiếng</span></button></div>
+            <figcaption><i>02</i><div><b>Short Film</b><span>Phim ngắn AI · 0:30</span></div></figcaption>
           </figure>
-          <figure class="xc">
-            <div class="xc-media"><video controls playsinline preload="metadata" poster="hinh/poster/khac-03.jpg" src="video/du-an-khac/Subway-Fashion_clean.mp4"></video></div>
-            <figcaption><b>Subway Fashion</b><span>Fashion film AI · 0:16</span></figcaption>
+          <figure class="xc" style="--p: url('hinh/poster/khac-03.jpg')">
+            <div class="xc-glow"></div>
+            <div class="xc-media"><video playsinline preload="metadata" poster="hinh/poster/khac-03.jpg" src="video/du-an-khac/Subway-Fashion_clean.mp4"></video>
+              <span class="xc-tag">Fashion</span>
+              <button class="xc-play" aria-label="Phát Subway Fashion có tiếng"><i><svg viewBox="0 0 24 24"><path d="M7 4.500v15l12-7.500z"/></svg></i><span>Xem có tiếng</span></button></div>
+            <figcaption><i>03</i><div><b>Subway Fashion</b><span>Fashion film AI · 0:16</span></div></figcaption>
           </figure>
+        </div>
         </div>
       </div>
       <div class="thumbs" id="thumbs">
@@ -2800,7 +2844,12 @@
       // Other Projects: bật video này thì dừng video kia; cuộn ra khỏi màn hình thì tạm dừng
       (() => {
         const xv = [...document.querySelectorAll('.xproj video')];
-        xv.forEach(v => v.addEventListener('play', () => xv.forEach(o => { if (o !== v && !o.paused) o.pause(); })));
+        xv.forEach(v => {
+          const card = v.closest('.xc'), btn = card.querySelector('.xc-play');
+          btn.addEventListener('click', () => { v.controls = true; v.muted = false; v.volume = 1; v.play().catch(() => {}); });
+          v.addEventListener('play', () => { card.classList.add('on'); v.controls = true; xv.forEach(o => { if (o !== v && !o.paused) o.pause(); }); });
+          v.addEventListener('ended', () => { card.classList.remove('on'); v.controls = false; v.load(); });
+        });
         if ('IntersectionObserver' in window) {
           const xo = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting && !e.target.paused) e.target.pause(); }), { threshold: 0.15 });
           xv.forEach(v => xo.observe(v));
